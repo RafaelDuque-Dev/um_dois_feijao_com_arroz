@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Um, Dois... Feijão com Arroz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" aria-label="Página Inicial">
+                <img src="img/Logo.png" alt="Logo Um, Dois Feijão com Arroz" class="logo">
+            </a>
+        </div>
+    </header>
+
+    <main>
+    <section class="banner">
+        <figure class="banner-wrapper">
+            <img src="img/Banner.jpeg" alt="Produtos frescos e selecionados para sua refeição" loading="lazy">
+            <div class="banner-overlay">
+                <h1>Frescor, praticidade e sabor direto pra você!</h1>
+            </div>
+        </figure>
+    </section>
+
+        <section class="filtros">
+            <input type="text" id="pesquisa" placeholder="🔍 Buscar produto...">
+            <select id="filtroTipo">
+                <option value="todos">Todos os Produtos</option>
+                <option value="fruta">🍎 Frutas</option>
+                <option value="legume">🥕 Legumes</option>
+            </select>
+        </section>
+
+        <section id="produtos" class="produtos"></section>
+    </main>
+
+    <button class="abrir-sacola" onclick="abrirSacola()">
+        🛒 Sacola <span id="contador" class="badge">0</span>
+    </button>
+
+    <div id="sacola" class="sacola">
+        <div class="topo-sacola">
+            <h2>Sua Sacola</h2>
+            <button class="fechar-sacola" onclick="fecharSacola()">✖</button>
+        </div>
+
+        <div id="listaSacola" class="lista-sacola">
+            <p class="sacola-vazia">Sua sacola está vazia.</p>
+        </div>
+
+        <div class="resumo-pedido">
+            <h3>Total: <span id="valorTotal">R$ 0,00</span></h3>
+        </div>
+
+        <div class="cliente">
+            <input type="text" id="nomeCliente" placeholder="👤 Seu nome completo">
+            <input type="tel" id="telefoneCliente" placeholder="📱 Seu WhatsApp">
+        </div>
+
+        <button class="btn-enviar" onclick="enviarPedido()">Finalizar no WhatsApp</button>
+    </div>
+
+    <footer class="footer-pedidos">
+        <div class="footer-container">
+            
+            <div class="footer-section footer-info">
+                <h3>Peça agora e receba em casa!</h3>
+                <p>Frutas, legumes e verduras selecionadas com carinho.</p>
+                <div class="footer-delivery-days">
+                    <span class="calendar-icon">📅</span>
+                    <p><strong>Entregas:</strong> Terças e Quartas-feiras</p>
+                </div>
+            </div>
+
+            <div class="footer-section footer-cta">
+                <div class="footer-delivery-info">
+                    <p>Pedidos com antecedência. Consulte disponibilidade em sua região.</p>
+                </div>
+                <div class="frete-badge">
+                    <span class="frete-tag">FRETE GRÁTIS*</span>
+                </div>
+            </div>
+
+            <div class="footer-section footer-payments">
+                <p class="payment-title">Formas de Pagamento</p>
+                <div class="payment-methods-list">
+                    <div class="method-item" title="Dinheiro">💵 <span>Dinheiro</span></div>
+                    <div class="method-item" title="Pix"><span class="pix-icon">◈</span> <span>Pix</span></div>
+                    <div class="method-item" title="Cartão">💳 <span>Cartão</span></div>
+                </div>
+                <small class="payment-note">Pagamento na entrega ou antecipado</small>
+            </div>
+
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Um, Dois... Feijão com Arroz. Todos os direitos reservados.</p>
+            <p>Desenvolvido por <a href="https://creativeduquestudio.com.br/" target="_blank ">Creative Duque Studio</a></p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,532 @@
+/* ============================= */
+/* VARIÁVEIS GLOBAIS */
+/* ============================= */
+:root {
+    --cor-primaria: #d47a26; /* Laranja da sua logo */
+    --cor-secundaria: #7b4bb7; /* Roxo da berinjela */
+    --cor-verde: #4caf50;
+    --cor-fundo: #fdfbf9; /* Fundo levemente quente */
+    --cor-branco: #ffffff;
+    --cor-texto: #2d2d2d;
+    --cor-cinza: #e5e5e5;
+    
+    --fonte-principal: 'Nunito', Arial, sans-serif;
+    --sombra-leve: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --sombra-forte: 0 8px 25px rgba(0, 0, 0, 0.15);
+    --radius: 12px;
+}
+
+/* ============================= */
+/* RESET & MOBILE FIRST BASE */
+/* ============================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fonte-principal);
+}
+
+body {
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    padding-bottom: 80px; /* Espaço para o botão flutuante */
+}
+
+/* HEADER */
+.main-header {
+    background: #D47A26;
+    background: linear-gradient(173deg, rgba(212, 122, 38, 1) 41%, rgba(123, 75, 183, 1) 96%);
+    padding: 1rem 0;
+    box-shadow: var(--sombra-leve);
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    height: 180px;
+    width: auto;
+    object-fit: contain;
+    transition: var(--transicao);
+}
+
+.logo:hover {
+    transform: scale(1.05); /* Feedback visual ao passar o mouse */
+}
+
+/* BANNER - VERSÃO AJUSTADA */
+.banner-wrapper {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    position: relative; /* Mantido: essencial para posicionar o texto */
+    /* NOVA REGRA: Fundo escuro para a imagem opaca se sobrepor */
+    background-color: #333; 
+}
+
+.banner img {
+    width: 100%;
+    height: clamp(200px, 40vh, 500px); 
+    object-fit: cover;
+    display: block;
+    /* AJUSTE: Reduzi ainda mais a opacidade para 0.5 (50%) */
+    opacity: 0.5; 
+    /* AJUSTE: Efeito opcional para tirar a cor e focar no texto */
+    /* filter: grayscale(100%); */ 
+}
+
+/* Camada de sobreposição para o texto */
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* AJUSTE: Escureci o overlay de 0.4 para 0.6 */
+    background: rgba(0, 0, 0, 0.2); 
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* AJUSTE: Aumentei o padding para evitar que o texto toque nas bordas em telas pequenas */
+    padding: 30px; 
+    text-align: center;
+}
+
+.banner-overlay h1 {
+    /* AJUSTE: Cor branca pura para máximo contraste */
+    color: #fff; 
+    /* AJUSTE: Aumentei ligeiramente o tamanho da fonte para a frase longa */
+    font-size: clamp(1.8rem, 6vw, 3.5rem); 
+    font-family: 'Montserrat', sans-serif; /* Sugestão de fonte mais moderna, se tiver disponível */
+    font-weight: 700; /* Negrito para mais peso */
+    /* AJUSTE: Sombra de texto mais suave, mas eficaz */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
+    /* AJUSTE: Altura de linha maior para a frase longa respirar nas quebras */
+    line-height: 1.3; 
+    /* AJUSTE: Limitei a largura máxima para que a frase não se espalhe muito em telas grandes */
+    max-width: 900px; 
+}
+
+
+/* ============================= */
+/* FILTROS */
+/* ============================= */
+.filtros {
+    display: flex;
+    flex-direction: column; /* Empilhado no mobile */
+    gap: 12px;
+    padding: 20px;
+}
+
+.filtros input, .filtros select {
+    padding: 14px;
+    font-size: 16px;
+    border: 2px solid var(--cor-cinza);
+    border-radius: var(--radius);
+    outline: none;
+    transition: 0.3s;
+}
+
+.filtros input:focus, .filtros select:focus {
+    border-color: var(--cor-primaria);
+}
+
+/* ============================= */
+/* PRODUTOS (Grid responsivo) */
+/* ============================= */
+.produtos {
+    display: grid;
+    /* Auto-fit adapta as colunas. Mínimo 150px para celular, cresce conforme a tela */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 0 20px 20px 20px;
+}
+
+.card {
+    background: var(--cor-branco);
+    border-radius: var(--radius);
+    box-shadow: var(--sombra-leve);
+    padding: 15px;
+    text-align: center;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-forte);
+}
+
+.card img {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.card p {
+    color: var(--cor-primaria);
+    font-weight: 800;
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+.card button {
+    background: var(--cor-primaria);
+    border: none;
+    color: white;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.card button:hover {
+    background: #b5641c;
+}
+
+/* ============================= */
+/* SACOLA LATERAL */
+/* ============================= */
+.abrir-sacola {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--cor-verde);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: var(--sombra-forte);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 99;
+    transition: transform 0.2s;
+}
+
+.abrir-sacola:active {
+    transform: scale(0.95);
+}
+
+.badge {
+    background: white;
+    color: var(--cor-verde);
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.sacola {
+    position: fixed;
+    right: -100%; /* Escondida por padrão */
+    top: 0;
+    width: 100%; /* 100% no celular */
+    height: 100%;
+    background: var(--cor-branco);
+    box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+    padding: 20px;
+    transition: right 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.sacola.ativa {
+    right: 0;
+}
+
+.topo-sacola {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--cor-cinza);
+}
+
+.fechar-sacola {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+}
+
+.lista-sacola {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px 0;
+}
+
+.item-sacola {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--cor-cinza);
+}
+
+.item-info h4 {
+    font-size: 14px;
+}
+
+.item-info p {
+    color: var(--cor-primaria);
+    font-weight: bold;
+}
+
+.item-controle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-remover {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-quantidade {
+    background: var(--cor-cinza);
+    color: var(--cor-texto);
+    border: none;
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-aumentar {
+    background: var(--cor-primaria);
+    color: white;
+}
+
+.btn-diminuir {
+    background: var(--cor-primaria);
+    color: white;
+}
+
+.resumo-pedido {
+    padding: 15px 0;
+    border-top: 2px solid var(--cor-cinza);
+    text-align: right;
+    font-size: 18px;
+}
+
+.cliente {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.cliente input {
+    padding: 12px;
+    border: 1px solid var(--cor-cinza);
+    border-radius: var(--radius);
+}
+
+.btn-enviar {
+    background: #25D366; /* Cor oficial do WhatsApp */
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* ============================= */
+/* MEDIA QUERIES (Desktop) */
+/* ============================= */
+@media (min-width: 768px) {
+    .banner img {
+        height: 350px;
+    }
+    .filtros {
+        flex-direction: row;
+        justify-content: center;
+    }
+    .produtos {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        padding: 0 40px 40px 40px;
+    }
+    .sacola {
+        width: 400px; /* No computador, fica como um menu lateral */
+    }
+}
+
+.footer-pedidos {
+    background-color: #5c2d5e;
+    color: white;
+    padding: 60px 20px 30px; /* Mais respiro no topo */
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    border-top: 6px solid #f39200;
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid; /* Grid facilita o alinhamento */
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.footer-section h3 {
+    color: #f39200;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Estilo do Dia de Entrega */
+.footer-delivery-days {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Botão WhatsApp */
+.btn-whatsapp {
+    background-color: #25d366;
+    color: white;
+    padding: 18px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    background-color: #20ba5a;
+}
+
+/* Badge de Frete */
+.frete-badge {
+    margin-top: 15px;
+}
+
+.frete-tag {
+    font-weight: 900;
+    color: #5c2d5e;
+    background: #ffffff;
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Pagamentos */
+.payment-title {
+    font-weight: 600;
+    color: #f39200;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.payment-methods-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.method-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.pix-icon {
+    color: #32bcad;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Rodapé final */
+.footer-bottom {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.8rem;
+    opacity: 0.7;
+    text-align: center;
+}
+
+.footer-bottom a {
+    color: #f39200;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Responsividade Desktop */
+@media (min-width: 992px) {
+    .footer-container {
+        grid-template-columns: 1.2fr 1fr 1fr;
+        text-align: left;
+    }
+
+    .footer-delivery-days {
+        justify-content: flex-start;
+    }
+
+    .payment-methods-list {
+        justify-content: flex-start;
+    }
+
+    .footer-section.footer-cta {
+        text-align: center;
+    }
+}
