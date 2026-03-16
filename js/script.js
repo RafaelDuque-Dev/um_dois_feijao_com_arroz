@@ -178,7 +178,7 @@ function enviarPedido() {
     mensagem += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
 
     // Número de destino (coloque o seu aqui)
-    const numeroWhatsApp = "5511951792255"; 
+    const numeroWhatsApp = "5511998988312"; // Substitua pelo número real do WhatsApp (com código do país e DDD)
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
     
     window.open(url, '_blank');
