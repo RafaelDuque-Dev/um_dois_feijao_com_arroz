@@ -1,3 +1,8 @@
+
+const listaSacola = document.getElementById('listaSacola');
+const contador = document.getElementById('contador');
+const valorTotalElemento = document.getElementById('valorTotal');
+
 // ==========================================
 // ESTADO DA APLICAÇÃO
 // ==========================================
@@ -28,7 +33,7 @@ const inputPesquisa = document.getElementById('pesquisa');
 const selectFiltro = document.getElementById('filtroTipo');
 
 function renderizarProdutos(produtos) {
-    containerProdutos.innerHTML = '';
+    containerProdutos.replaceChildren();
     
     if (produtos.length === 0) {
         containerProdutos.innerHTML = '<p>Nenhum produto encontrado.</p>';
@@ -42,7 +47,10 @@ function renderizarProdutos(produtos) {
             <img src="${produto.imagem}" alt="${produto.nome}">
             <div class="card-info">
                 <h3>${produto.nome}</h3>
-                <p class="preco">R$ ${produto.preco.toFixed(2).replace('.', ',')}</p>
+                <p class="preco">
+                    R$ ${produto.preco.toFixed(2).replace('.', ',')} 
+                    <span class="unidade">/ ${produto.unidade}</span>
+                </p>
                 <button onclick="adicionarAoCarrinho(${produto.id})">Adicionar à Sacola</button>
             </div>
         `;
@@ -75,7 +83,12 @@ function fecharSacola() {
 }
 
 function adicionarAoCarrinho(idProduto) {
-    const produto = listaDeProdutos.find(p => p.id === idProduto);
+    const mapaProdutos = new Map();
+
+    listaDeProdutos.forEach(p => mapaProdutos.set(p.id, p));
+
+    // depois
+    const produto = mapaProdutos.get(idProduto);
     const itemNoCarrinho = carrinho.find(item => item.id === idProduto);
 
     if (itemNoCarrinho) {
@@ -120,17 +133,16 @@ function atualizarSacolaUI() {
         const subtotal = item.preco * item.quantidade;
         total += subtotal;
         qtdTotal += item.quantidade;
-
+        
         const div = document.createElement('div');
-        div.className = 'item-sacola-elegante';
+        div.className = 'item-sacola'; // Corrigido de 'item-sacola-elegante' para o CSS original
         div.innerHTML = `
             <div class="item-info">
-                <h4>${item.nome}</h4>
+                <h4>${item.nome} (${item.unidade})</h4>
                 <p>R$ ${subtotal.toFixed(2).replace('.', ',')}</p>
             </div>
-            <div class="item-controle-quantidade">
-                <button class="btn-quantidade btn-diminuir" onclick="diminuirQuantidade(${item.id})">-</button>
-                <span class="item-quantidade">${item.quantidade} Un</span>
+            <div class="item-controle"> <button class="btn-quantidade btn-diminuir" onclick="diminuirQuantidade(${item.id})">-</button>
+                <span class="item-quantidade" style="font-weight: bold;">${item.quantidade}</span>
                 <button class="btn-quantidade btn-aumentar" onclick="aumentarQuantidade(${item.id})">+</button>
             </div>
         `;

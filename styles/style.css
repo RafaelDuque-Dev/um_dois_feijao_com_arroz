@@ -278,6 +278,7 @@ body {
     flex: 1;
     overflow-y: auto;
     padding: 15px 0;
+    -webkit-overflow-scrolling: touch;
 }
 
 .item-sacola {
@@ -529,4 +530,28 @@ body {
     .footer-section.footer-cta {
         text-align: center;
     }
+}
+
+/* ============================= */
+/* CORREÇÕES PARA MOBILE (ZOOM)  */
+/* ============================= */
+input, select, textarea {
+    font-size: 16px !important; /* Evita o zoom automático em inputs no celular */
+}
+
+button {
+    touch-action: manipulation; /* Evita o zoom de duplo clique nos botões de + e - */
+    font-size: 16px;
+}
+
+@media screen and (max-width: 768px) {
+    input, select, textarea {
+        font-size: 16px;
+    }
+}
+
+.unidade {
+    font-size: 14px;
+    color: #777;
+    font-weight: 600;
 }
