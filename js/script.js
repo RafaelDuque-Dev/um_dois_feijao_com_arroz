@@ -168,26 +168,45 @@ function enviarPedido() {
 
     const nome = document.getElementById('nomeCliente').value;
     const telefone = document.getElementById('telefoneCliente').value;
+    const rua = document.getElementById('rua').value;
+    const bairro = document.getElementById('bairro').value;
+    const cidade = document.getElementById('cidade').value;
+    const complemento = document.getElementById('complemento').value;
 
-    if (!nome || !telefone) {
-        alert("Por favor, preencha seu nome e telefone.");
+    if (!nome || !telefone || !rua || !bairro || !cidade) {
+        alert("Por favor, preencha todos os campos obrigatórios.");
         return;
     }
 
-    // Montando a mensagem conforme solicitado
-    let mensagem = `Pedido - Um Dois Feijão com Arroz\n\n`;
-    mensagem += `Cliente: ${nome}\n`;
-    mensagem += `Telefone: ${telefone}\n\n`;
+    // ✅ AQUI ESTAVA FALTANDO
+    let enderecoFormatado = `${rua}\n${bairro} - ${cidade}`;
+
+    if (complemento) {
+        enderecoFormatado += `\n📌 Complemento: ${complemento}`;
+    }
+
+    // Montando mensagem
+    let mensagem = `🛒 *Pedido - Um Dois Feijão com Arroz*\n\n`;
+
+    mensagem += `👤 *Cliente:* ${nome}\n`;
+    mensagem += `📞 *Telefone:* ${telefone}\n\n`;
+
+    mensagem += `📍 *Endereço:*\n${enderecoFormatado}\n\n`;
+
+    mensagem += `📦 *Itens do Pedido:*\n`;
 
     let total = 0;
 
     carrinho.forEach(p => {
-        // Usando p.quantidade que é o nome da propriedade no nosso código
-        mensagem += `${p.nome} x${p.quantidade}\n`;
-        total += p.preco * p.quantidade;
+        const subtotal = p.preco * p.quantidade;
+
+        mensagem += `• ${p.nome} (${p.unidade})\n`;
+        mensagem += `  Qtd: ${p.quantidade} | R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+
+        total += subtotal;
     });
 
-    mensagem += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
+    mensagem += `\n💰 *Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
 
     // Número de destino (coloque o seu aqui)
     const numeroWhatsApp = "5511998988312"; // Substitua pelo número real do WhatsApp (com código do país e DDD)

@@ -3,83 +3,63 @@
   { "id": 2, "nome": "Banana Prata", "preco": 8.99, "tipo": "fruta", "unidade": "dúzia", "imagem": "img/banana_prata.jpg" },
   { "id": 3, "nome": "Banana Maçã", "preco": 9.99, "tipo": "fruta", "unidade": "dúzia", "imagem": "img/banana_maca.jpg" },
   { "id": 4, "nome": "Banana-da-Terra", "preco": 12.99, "tipo": "fruta", "unidade": "dúzia", "imagem": "img/banana_terra.jpg" },
-
   { "id": 5, "nome": "Mexerica Ponkan", "preco": 9.99, "tipo": "fruta", "unidade": "dúzia", "imagem": "img/mexerica.jpg" },
   { "id": 6, "nome": "Caqui Rama Forte", "preco": 2.50, "tipo": "fruta", "unidade": "unidade", "imagem": "img/caqui.jpg" },
   { "id": 7, "nome": "Laranja Pera Rio", "preco": 8.99, "tipo": "fruta", "unidade": "dúzia", "imagem": "img/laranja_pera.jpg" },
   { "id": 8, "nome": "Laranja", "preco": 7.99, "tipo": "fruta", "unidade": "dúzia", "imagem": "img/laranja.jpg" },
-
   { "id": 9, "nome": "Abacaxi", "preco": 6.99, "tipo": "fruta", "unidade": "unidade", "imagem": "img/abacaxi.jpg" },
   { "id": 10, "nome": "Maçã Gala", "preco": 1.99, "tipo": "fruta", "unidade": "unidade", "imagem": "img/maca_gala.jpg" },
   { "id": 11, "nome": "Pera", "preco": 2.50, "tipo": "fruta", "unidade": "unidade", "imagem": "img/pera.jpg" },
   { "id": 12, "nome": "Manga Palmer", "preco": 3.50, "tipo": "fruta", "unidade": "unidade", "imagem": "img/manga.jpg" },
   { "id": 13, "nome": "Goiaba", "preco": 2.00, "tipo": "fruta", "unidade": "unidade", "imagem": "img/goiaba.jpg" },
-
   { "id": 14, "nome": "Milho", "preco": 1.50, "tipo": "legume", "unidade": "unidade", "imagem": "img/milho.jpg" },
   { "id": 15, "nome": "Morango", "preco": 8.99, "tipo": "fruta", "unidade": "caixa", "imagem": "img/morango.jpg" },
-
   { "id": 16, "nome": "Batata", "preco": 4.99, "tipo": "raiz", "unidade": "kg", "imagem": "img/batata.jpg" },
   { "id": 17, "nome": "Abobrinha", "preco": 3.99, "tipo": "legume", "unidade": "kg", "imagem": "img/abobrinha.jpg" },
   { "id": 18, "nome": "Tomate para Molho", "preco": 5.99, "tipo": "legume", "unidade": "kg", "imagem": "img/tomate_molho.jpg" },
   { "id": 19, "nome": "Tomate para Salada", "preco": 6.99, "tipo": "legume", "unidade": "kg", "imagem": "img/tomate.jpg" },
   { "id": 20, "nome": "Chuchu", "preco": 2.99, "tipo": "legume", "unidade": "kg", "imagem": "img/chuchu.jpg" },
-
   { "id": 21, "nome": "Abóbora Japonesa", "preco": 3.99, "tipo": "legume", "unidade": "kg", "imagem": "img/abobora.jpg" },
   { "id": 22, "nome": "Cará", "preco": 6.99, "tipo": "raiz", "unidade": "kg", "imagem": "img/cara.jpg" },
   { "id": 23, "nome": "Alho", "preco": 18.90, "tipo": "tempero", "unidade": "kg", "imagem": "img/alho.jpg" },
   { "id": 24, "nome": "Alho-poró", "preco": 3.99, "tipo": "tempero", "unidade": "unidade", "imagem": "img/alho_poro.jpg" },
   { "id": 25, "nome": "Cebola", "preco": 3.99, "tipo": "tempero", "unidade": "kg", "imagem": "img/cebola.jpg" },
-
   { "id": 26, "nome": "Melão Amarelo", "preco": 4.99, "tipo": "fruta", "unidade": "kg", "imagem": "img/melao.jpg" },
   { "id": 27, "nome": "Melancia", "preco": 1.99, "tipo": "fruta", "unidade": "kg", "imagem": "img/melancia.jpg" },
-
   { "id": 28, "nome": "Mamão Formosa", "preco": 3.99, "tipo": "fruta", "unidade": "kg", "imagem": "img/mamao_formosa.jpg" },
   { "id": 29, "nome": "Mamão Papaya", "preco": 5.99, "tipo": "fruta", "unidade": "kg", "imagem": "img/mamao_papaya.jpg" },
-
   { "id": 30, "nome": "Escarola", "preco": 3.50, "tipo": "verdura", "unidade": "unidade", "imagem": "img/escarola.jpg" },
   { "id": 31, "nome": "Alface Lisa", "preco": 2.99, "tipo": "verdura", "unidade": "unidade", "imagem": "img/alface_lisa.jpg" },
   { "id": 32, "nome": "Alface Crespa", "preco": 2.99, "tipo": "verdura", "unidade": "unidade", "imagem": "img/alface_crespa.jpg" },
   { "id": 33, "nome": "Acelga", "preco": 4.99, "tipo": "verdura", "unidade": "unidade", "imagem": "img/acelga.jpg" },
-
   { "id": 34, "nome": "Agrião", "preco": 2.50, "tipo": "verdura", "unidade": "maço", "imagem": "img/agriao.jpg" },
   { "id": 35, "nome": "Couve", "preco": 2.50, "tipo": "verdura", "unidade": "maço", "imagem": "img/couve.jpg" },
   { "id": 36, "nome": "Cenoura", "preco": 3.99, "tipo": "raiz", "unidade": "kg", "imagem": "img/cenoura.jpg" },
   { "id": 37, "nome": "Ovo Extra", "preco": 10.99, "tipo": "ovo", "unidade": "dúzia", "imagem": "img/ovo_extra.jpg" },
-
   { "id": 38, "nome": "Beterraba", "preco": 3.99, "tipo": "raiz", "unidade": "kg", "imagem": "img/beterraba.jpg" },
   { "id": 39, "nome": "Batata Doce", "preco": 3.99, "tipo": "raiz", "unidade": "kg", "imagem": "img/batata_doce.jpg" },
   { "id": 40, "nome": "Mandioquinha", "preco": 8.99, "tipo": "raiz", "unidade": "kg", "imagem": "img/mandioquinha.jpg" },
   { "id": 41, "nome": "Inhame", "preco": 6.99, "tipo": "raiz", "unidade": "kg", "imagem": "img/inhame.jpg" },
-
   { "id": 42, "nome": "Gengibre", "preco": 9.99, "tipo": "tempero", "unidade": "kg", "imagem": "img/gengibre.jpg" },
-
   { "id": 43, "nome": "Pimentão Verde", "preco": 6.99, "tipo": "legume", "unidade": "kg", "imagem": "img/pimentao_verde.jpg" },
   { "id": 44, "nome": "Pimentão Vermelho", "preco": 9.99, "tipo": "legume", "unidade": "kg", "imagem": "img/pimentao_vermelho.jpg" },
   { "id": 45, "nome": "Pimentão Amarelo", "preco": 9.99, "tipo": "legume", "unidade": "kg", "imagem": "img/pimentao_amarelo.jpg" },
-
   { "id": 46, "nome": "Pepino Japonês", "preco": 4.99, "tipo": "legume", "unidade": "kg", "imagem": "img/pepino_japonês.jpg" },
   { "id": 47, "nome": "Pepino Comum", "preco": 3.99, "tipo": "legume", "unidade": "kg", "imagem": "img/pepino_comum.jpg" },
   { "id": 48, "nome": "Berinjela", "preco": 4.99, "tipo": "legume", "unidade": "kg", "imagem": "img/berinjela.jpg" },
   { "id": 49, "nome": "Quiabo", "preco": 7.99, "tipo": "legume", "unidade": "kg", "imagem": "img/quiabo.jpg" },
-
   { "id": 50, "nome": "Almeirão", "preco": 2.50, "tipo": "verdura", "unidade": "maço", "imagem": "img/almeirao.jpg" },
   { "id": 51, "nome": "Arruda", "preco": 3.00, "tipo": "tempero", "unidade": "maço", "imagem": "img/arruda.jpg" },
-
   { "id": 52, "nome": "Couve-flor Branca", "preco": 6.99, "tipo": "verdura", "unidade": "unidade", "imagem": "img/couve_flor-branca.jpg" },
   { "id": 53, "nome": "Couve-flor Verde", "preco": 7.99, "tipo": "verdura", "unidade": "unidade", "imagem": "img/couve_flor-verde.jpg" },
-
   { "id": 54, "nome": "Espinafre", "preco": 2.50, "tipo": "verdura", "unidade": "maço", "imagem": "img/espinafre.jpg" },
   { "id": 55, "nome": "Hortelã", "preco": 2.00, "tipo": "tempero", "unidade": "maço", "imagem": "img/hortela.jpg" },
-
   { "id": 56, "nome": "Nabo", "preco": 4.99, "tipo": "raiz", "unidade": "kg", "imagem": "img/nabo.jpg" },
   { "id": 57, "nome": "Rabanete", "preco": 4.99, "tipo": "raiz", "unidade": "kg", "imagem": "img/rabanete.jpg" },
-
   { "id": 58, "nome": "Repolho Branco", "preco": 5.99, "tipo": "verdura", "unidade": "unidade", "imagem": "img/repolho_branco.jpg" },
   { "id": 59, "nome": "Repolho Roxo", "preco": 6.99, "tipo": "verdura", "unidade": "unidade", "imagem": "img/repolho_roxo.jpg" },
-
   { "id": 60, "nome": "Salsão", "preco": 4.99, "tipo": "verdura", "unidade": "unidade", "imagem": "img/salsao.jpg" },
   { "id": 61, "nome": "Brócolis", "preco": 5.99, "tipo": "verdura", "unidade": "unidade", "imagem": "img/brocolis.jpg" },
-
   { "id": 62, "nome": "Cebolinha", "preco": 2.00, "tipo": "tempero", "unidade": "maço", "imagem": "img/cebolinha.jpg" },
   { "id": 63, "nome": "Coentro", "preco": 2.00, "tipo": "tempero", "unidade": "maço", "imagem": "img/coentro.jpg" }
 ]

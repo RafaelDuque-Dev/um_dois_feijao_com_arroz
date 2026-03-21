@@ -65,8 +65,18 @@
         </div>
 
         <div class="cliente">
-            <input type="text" id="nomeCliente" placeholder="👤 Seu nome completo">
-            <input type="tel" id="telefoneCliente" placeholder="📱 Seu WhatsApp">
+            <input type="text" id="nomeCliente" placeholder="👤 Nome completo">
+            
+            <input type="tel" id="telefoneCliente" placeholder="📱 WhatsApp">
+
+            <input type="text" id="rua" placeholder="📍 Rua e número">
+
+            <div class="linha-dupla">
+                <input type="text" id="bairro" placeholder="📍 Bairro">
+                <input type="text" id="cidade" placeholder="📍 Cidade">
+            </div>
+
+            <input type="text" id="complemento" placeholder="📌 Complemento">
         </div>
 
         <button class="btn-enviar" onclick="enviarPedido()">Finalizar no WhatsApp</button>
