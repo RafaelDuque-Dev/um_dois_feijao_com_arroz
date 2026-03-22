@@ -574,3 +574,9 @@ button {
     color: #777;
     font-weight: 600;
 }
+
+.footer-delivery-info p {
+    font-size: 1rem;
+    color: #f39200;
+    font-weight: 600;
+}
