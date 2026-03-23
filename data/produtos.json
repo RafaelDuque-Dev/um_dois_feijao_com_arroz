@@ -10,7 +10,7 @@
   { "id": 9, "nome": "Pimentão Verde", "preco": 10.50, "tipo": "legume", "unidade": "kg", "imagem": "img/pimentao_verde.jpg" },
   { "id": 10, "nome": "Pimentão Vermelho", "preco": 16.15, "tipo": "legume", "unidade": "kg", "imagem": "img/pimentao_vermelho.jpg" },
   { "id": 11, "nome": "Pimentão Amarelo", "preco": 16.15, "tipo": "legume", "unidade": "kg", "imagem": "img/pimentao_amarelo.jpg" },
-  { "id": 12, "nome": "Alho", "preco": 128.00, "tipo": "tempero", "unidade": "kg", "imagem": "img/alho.jpg" },
+  { "id": 12, "nome": "Alho (100g)", "preco": 3.00, "tipo": "tempero", "unidade": "grama", "imagem": "img/alho.jpg" },
   { "id": 13, "nome": "Cebola", "preco": 6.80, "tipo": "tempero", "unidade": "kg", "imagem": "img/cebola.jpg" },
   { "id": 14, "nome": "Cenoura", "preco": 7.10, "tipo": "raiz", "unidade": "kg", "imagem": "img/cenoura.jpg" },
   { "id": 15, "nome": "Ovos Extra", "preco": 1.50, "tipo": "ovo", "unidade": "unidade", "imagem": "img/ovo_extra.jpg" },
