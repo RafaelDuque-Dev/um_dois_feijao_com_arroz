@@ -1,4 +1,3 @@
-
 const listaSacola = document.getElementById('listaSacola');
 const contador = document.getElementById('contador');
 const valorTotalElemento = document.getElementById('valorTotal');
@@ -14,27 +13,30 @@ let carrinho = [];
 // ==========================================
 async function carregarProdutos() {
     try {
-        // Altere para o caminho real do seu arquivo
-        const resposta = await fetch('data/produtos.json'); 
+        const resposta = await fetch('data/produtos.json');
         listaDeProdutos = await resposta.json();
-        
+
         renderizarProdutos(listaDeProdutos);
     } catch (erro) {
         console.error("Erro ao carregar o JSON:", erro);
-        document.getElementById('produtos').innerHTML = '<p>Erro ao carregar os itens.</p>';
+        document.getElementById('produtos').innerHTML =
+            '<p>Erro ao carregar os itens.</p>';
     }
 }
 
 // ==========================================
-// RENDERIZAÇÃO E FILTROS
+// ELEMENTOS
 // ==========================================
 const containerProdutos = document.getElementById('produtos');
 const inputPesquisa = document.getElementById('pesquisa');
 const selectFiltro = document.getElementById('filtroTipo');
 
+// ==========================================
+// RENDERIZAÇÃO DOS PRODUTOS
+// ==========================================
 function renderizarProdutos(produtos) {
     containerProdutos.replaceChildren();
-    
+
     if (produtos.length === 0) {
         containerProdutos.innerHTML = '<p>Nenhum produto encontrado.</p>';
         return;
@@ -43,28 +45,52 @@ function renderizarProdutos(produtos) {
     produtos.forEach(produto => {
         const div = document.createElement('div');
         div.className = 'card';
+
+        let seletorPeso = '';
+
+        // Exibe seletor somente para produtos por KG
+        if (produto.unidade === 'kg') {
+            seletorPeso = `
+                <select id="peso-${produto.id}" class="seletor-peso">
+                    <option value="0.5">1/2 KG</option>
+                    <option value="1">1 KG</option>
+                    <option value="1.5">1,5 KG</option>
+                    <option value="2">2 KG</option>
+                </select>
+            `;
+        }
+
         div.innerHTML = `
             <img src="${produto.imagem}" alt="${produto.nome}">
             <div class="card-info">
                 <h3>${produto.nome}</h3>
                 <p class="preco">
-                    R$ ${produto.preco.toFixed(2).replace('.', ',')} 
+                    R$ ${produto.preco.toFixed(2).replace('.', ',')}
                     <span class="unidade">/ ${produto.unidade}</span>
                 </p>
-                <button onclick="adicionarAoCarrinho(${produto.id})">Adicionar à Sacola</button>
+                ${seletorPeso}
+                <button onclick="adicionarAoCarrinho(${produto.id})">
+                    Adicionar à Sacola
+                </button>
             </div>
         `;
+
         containerProdutos.appendChild(div);
     });
 }
 
+// ==========================================
+// FILTROS
+// ==========================================
 function filtrarProdutos() {
     const termo = inputPesquisa.value.toLowerCase();
     const categoria = selectFiltro.value;
 
     const filtrados = listaDeProdutos.filter(p => {
         const bateNome = p.nome.toLowerCase().includes(termo);
-        const bateCategoria = categoria === 'todos' || p.tipo === categoria;
+        const bateCategoria =
+            categoria === 'todos' || p.tipo === categoria;
+
         return bateNome && bateCategoria;
     });
 
@@ -72,7 +98,7 @@ function filtrarProdutos() {
 }
 
 // ==========================================
-// LÓGICA DA SACOLA
+// SACOLA
 // ==========================================
 function abrirSacola() {
     document.getElementById('sacola').classList.add('ativa');
@@ -82,83 +108,122 @@ function fecharSacola() {
     document.getElementById('sacola').classList.remove('ativa');
 }
 
+// ==========================================
+// ADICIONAR AO CARRINHO
+// ==========================================
 function adicionarAoCarrinho(idProduto) {
-    const mapaProdutos = new Map();
+    const produto = listaDeProdutos.find(p => p.id === idProduto);
 
-    listaDeProdutos.forEach(p => mapaProdutos.set(p.id, p));
+    if (!produto) return;
 
-    // depois
-    const produto = mapaProdutos.get(idProduto);
-    const itemNoCarrinho = carrinho.find(item => item.id === idProduto);
+    let pesoSelecionado = 1;
 
-    if (itemNoCarrinho) {
-        itemNoCarrinho.quantidade += 1;
+    // Se for produto vendido por KG
+    if (produto.unidade === 'kg') {
+        pesoSelecionado = parseFloat(
+            document.getElementById(`peso-${idProduto}`).value
+        );
+    }
+
+    // Procura item igual com mesmo peso
+    const itemExistente = carrinho.find(item =>
+        item.id === idProduto &&
+        item.peso === pesoSelecionado
+    );
+
+    if (itemExistente) {
+        itemExistente.quantidade++;
     } else {
-        carrinho.push({ ...produto, quantidade: 1 });
+        carrinho.push({
+            ...produto,
+            peso: pesoSelecionado,
+            quantidade: 1
+        });
     }
 
     atualizarSacolaUI();
     abrirSacola();
 }
 
-function aumentarQuantidade(id) {
-    const item = carrinho.find(i => i.id === id);
-    if (item) {
-        item.quantidade++;
-        atualizarSacolaUI();
-    }
+// ==========================================
+// AUMENTAR QUANTIDADE
+// ==========================================
+function aumentarQuantidade(index) {
+    carrinho[index].quantidade++;
+    atualizarSacolaUI();
 }
 
-function diminuirQuantidade(id) {
-    const item = carrinho.find(i => i.id === id);
-    if (item) {
-        item.quantidade--;
-        if (item.quantidade <= 0) {
-            carrinho = carrinho.filter(i => i.id !== id);
-        }
-        atualizarSacolaUI();
+// ==========================================
+// DIMINUIR QUANTIDADE
+// ==========================================
+function diminuirQuantidade(index) {
+    carrinho[index].quantidade--;
+
+    if (carrinho[index].quantidade <= 0) {
+        carrinho.splice(index, 1);
     }
+
+    atualizarSacolaUI();
 }
 
+// ==========================================
+// ATUALIZAR UI SACOLA
+// ==========================================
 function atualizarSacolaUI() {
-    const listaSacola = document.getElementById('listaSacola');
-    const contador = document.getElementById('contador');
-    const valorTotalElemento = document.getElementById('valorTotal');
-    
     listaSacola.innerHTML = '';
+
     let total = 0;
     let qtdTotal = 0;
 
-    carrinho.forEach(item => {
-        const subtotal = item.preco * item.quantidade;
+    carrinho.forEach((item, index) => {
+        const peso = item.peso || 1;
+        const subtotal = item.preco * peso * item.quantidade;
+
         total += subtotal;
         qtdTotal += item.quantidade;
-        
+
+        const descricaoUnidade =
+            item.unidade === 'kg'
+                ? `${item.peso} kg`
+                : item.unidade;
+
         const div = document.createElement('div');
-        div.className = 'item-sacola'; // Corrigido de 'item-sacola-elegante' para o CSS original
+        div.className = 'item-sacola';
+
         div.innerHTML = `
             <div class="item-info">
-                <h4>${item.nome} (${item.unidade})</h4>
+                <h4>${item.nome} (${descricaoUnidade})</h4>
                 <p>R$ ${subtotal.toFixed(2).replace('.', ',')}</p>
             </div>
-            <div class="item-controle"> <button class="btn-quantidade btn-diminuir" onclick="diminuirQuantidade(${item.id})">-</button>
-                <span class="item-quantidade" style="font-weight: bold;">${item.quantidade}</span>
-                <button class="btn-quantidade btn-aumentar" onclick="aumentarQuantidade(${item.id})">+</button>
+
+            <div class="item-controle">
+                <button class="btn-quantidade btn-diminuir"
+                    onclick="diminuirQuantidade(${index})">-</button>
+
+                <span class="item-quantidade" style="font-weight:bold;">
+                    ${item.quantidade}
+                </span>
+
+                <button class="btn-quantidade btn-aumentar"
+                    onclick="aumentarQuantidade(${index})">+</button>
             </div>
         `;
+
         listaSacola.appendChild(div);
     });
 
     if (carrinho.length === 0) {
-        listaSacola.innerHTML = '<p class="sacola-vazia">Sua sacola está vazia.</p>';
+        listaSacola.innerHTML =
+            '<p class="sacola-vazia">Sua sacola está vazia.</p>';
     }
 
     contador.innerText = qtdTotal;
-    valorTotalElemento.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    valorTotalElemento.innerText =
+        `R$ ${total.toFixed(2).replace('.', ',')}`;
 }
 
 // ==========================================
-// FINALIZAR PEDIDO (WHATSAPP)
+// FINALIZAR PEDIDO WHATSAPP
 // ==========================================
 function enviarPedido() {
     if (carrinho.length === 0) {
@@ -178,14 +243,12 @@ function enviarPedido() {
         return;
     }
 
-    // ✅ AQUI ESTAVA FALTANDO
     let enderecoFormatado = `${rua}\n${bairro} - ${cidade}`;
 
     if (complemento) {
         enderecoFormatado += `\n📌 Complemento: ${complemento}`;
     }
 
-    // Montando mensagem
     let mensagem = `🛒 *Pedido - Um Dois Feijão com Arroz*\n\n`;
 
     mensagem += `👤 *Cliente:* ${nome}\n`;
@@ -197,25 +260,35 @@ function enviarPedido() {
 
     let total = 0;
 
-    carrinho.forEach(p => {
-        const subtotal = p.preco * p.quantidade;
+    carrinho.forEach(item => {
+        const peso = item.peso || 1;
+        const subtotal = item.preco * peso * item.quantidade;
 
-        mensagem += `• ${p.nome} (${p.unidade})\n`;
-        mensagem += `  Qtd: ${p.quantidade} | R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+        const descricaoUnidade =
+            item.unidade === 'kg'
+                ? `${peso} kg`
+                : item.unidade;
+
+        mensagem += `• ${item.nome} (${descricaoUnidade})\n`;
+        mensagem += `  Qtd: ${item.quantidade} | R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
 
         total += subtotal;
     });
 
     mensagem += `\n💰 *Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
 
-    // Número de destino (coloque o seu aqui)
-    const numeroWhatsApp = "5511998988312"; // Substitua pelo número real do WhatsApp (com código do país e DDD)
-    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
-    
+    const numeroWhatsApp = "5511998988312";
+
+    const url =
+        `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+
     window.open(url, '_blank');
 }
 
-// Inicialização
+// ==========================================
+// INICIALIZAÇÃO
+// ==========================================
 carregarProdutos();
+
 inputPesquisa.addEventListener('input', filtrarProdutos);
 selectFiltro.addEventListener('change', filtrarProdutos);
