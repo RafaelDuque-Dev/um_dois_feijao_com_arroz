@@ -47,8 +47,9 @@ function renderizarProdutos(produtos) {
         div.className = 'card';
 
         let seletorPeso = '';
+        let seletorVenda = '';
 
-        // Exibe seletor somente para produtos por KG
+        // Seletor KG
         if (produto.unidade === 'kg') {
             seletorPeso = `
                 <select id="peso-${produto.id}" class="seletor-peso">
@@ -60,15 +61,29 @@ function renderizarProdutos(produtos) {
             `;
         }
 
+        // Seletor ATACADO
+        if (produto.atacado) {
+            seletorVenda = `
+                <select id="tipo-${produto.id}" class="seletor-venda">
+                    <option value="varejo">Varejo</option>
+                    <option value="atacado">Caixa (${produto.atacado.pesoCaixa}kg)</option>
+                </select>
+            `;
+        }
+
         div.innerHTML = `
             <img src="${produto.imagem}" alt="${produto.nome}">
             <div class="card-info">
                 <h3>${produto.nome}</h3>
+
                 <p class="preco">
                     R$ ${produto.preco.toFixed(2).replace('.', ',')}
                     <span class="unidade">/ ${produto.unidade}</span>
                 </p>
+
+                ${seletorVenda}
                 ${seletorPeso}
+
                 <button onclick="adicionarAoCarrinho(${produto.id})">
                     Adicionar à Sacola
                 </button>
@@ -113,30 +128,45 @@ function fecharSacola() {
 // ==========================================
 function adicionarAoCarrinho(idProduto) {
     const produto = listaDeProdutos.find(p => p.id === idProduto);
-
     if (!produto) return;
 
-    let pesoSelecionado = 1;
+    let peso = 1;
+    let preco = produto.preco;
+    let tipoVenda = 'varejo';
 
-    // Se for produto vendido por KG
+    // Peso varejo
     if (produto.unidade === 'kg') {
-        pesoSelecionado = parseFloat(
-            document.getElementById(`peso-${idProduto}`).value
+        peso = parseFloat(
+            document.getElementById(`peso-${idProduto}`)?.value || 1
         );
     }
 
-    // Procura item igual com mesmo peso
-    const itemExistente = carrinho.find(item =>
+    // Tipo venda
+    const seletor = document.getElementById(`tipo-${idProduto}`);
+    if (seletor) {
+        tipoVenda = seletor.value;
+    }
+
+    // ATACADO
+    if (tipoVenda === 'atacado' && produto.atacado) {
+        preco = produto.atacado.precoCaixa;
+        peso = produto.atacado.pesoCaixa;
+    }
+
+    // Verifica item existente
+    const existente = carrinho.find(item =>
         item.id === idProduto &&
-        item.peso === pesoSelecionado
+        item.tipoVenda === tipoVenda
     );
 
-    if (itemExistente) {
-        itemExistente.quantidade++;
+    if (existente) {
+        existente.quantidade++;
     } else {
         carrinho.push({
             ...produto,
-            peso: pesoSelecionado,
+            preco,
+            peso,
+            tipoVenda,
             quantidade: 1
         });
     }
@@ -146,16 +176,13 @@ function adicionarAoCarrinho(idProduto) {
 }
 
 // ==========================================
-// AUMENTAR QUANTIDADE
+// CONTROLE DE QUANTIDADE
 // ==========================================
 function aumentarQuantidade(index) {
     carrinho[index].quantidade++;
     atualizarSacolaUI();
 }
 
-// ==========================================
-// DIMINUIR QUANTIDADE
-// ==========================================
 function diminuirQuantidade(index) {
     carrinho[index].quantidade--;
 
@@ -167,7 +194,7 @@ function diminuirQuantidade(index) {
 }
 
 // ==========================================
-// ATUALIZAR UI SACOLA
+// ATUALIZAR SACOLA
 // ==========================================
 function atualizarSacolaUI() {
     listaSacola.innerHTML = '';
@@ -177,15 +204,24 @@ function atualizarSacolaUI() {
 
     carrinho.forEach((item, index) => {
         const peso = item.peso || 1;
-        const subtotal = item.preco * peso * item.quantidade;
+
+        let subtotal;
+
+        if (item.tipoVenda === 'atacado') {
+            subtotal = item.preco * item.quantidade;
+        } else {
+            subtotal = item.preco * peso * item.quantidade;
+        }
 
         total += subtotal;
         qtdTotal += item.quantidade;
 
         const descricaoUnidade =
-            item.unidade === 'kg'
-                ? `${item.peso} kg`
-                : item.unidade;
+            item.tipoVenda === 'atacado'
+                ? `Caixa (${peso}kg)`
+                : (item.unidade === 'kg'
+                    ? `${peso} kg`
+                    : item.unidade);
 
         const div = document.createElement('div');
         div.className = 'item-sacola';
@@ -197,15 +233,9 @@ function atualizarSacolaUI() {
             </div>
 
             <div class="item-controle">
-                <button class="btn-quantidade btn-diminuir"
-                    onclick="diminuirQuantidade(${index})">-</button>
-
-                <span class="item-quantidade" style="font-weight:bold;">
-                    ${item.quantidade}
-                </span>
-
-                <button class="btn-quantidade btn-aumentar"
-                    onclick="aumentarQuantidade(${index})">+</button>
+                <button onclick="diminuirQuantidade(${index})">-</button>
+                <span>${item.quantidade}</span>
+                <button onclick="aumentarQuantidade(${index})">+</button>
             </div>
         `;
 
@@ -223,7 +253,7 @@ function atualizarSacolaUI() {
 }
 
 // ==========================================
-// FINALIZAR PEDIDO WHATSAPP
+// WHATSAPP
 // ==========================================
 function enviarPedido() {
     if (carrinho.length === 0) {
@@ -239,35 +269,36 @@ function enviarPedido() {
     const complemento = document.getElementById('complemento').value;
 
     if (!nome || !telefone || !rua || !bairro || !cidade) {
-        alert("Por favor, preencha todos os campos obrigatórios.");
+        alert("Preencha os campos obrigatórios.");
         return;
     }
 
-    let enderecoFormatado = `${rua}\n${bairro} - ${cidade}`;
-
+    let endereco = `${rua}\n${bairro} - ${cidade}`;
     if (complemento) {
-        enderecoFormatado += `\n📌 Complemento: ${complemento}`;
+        endereco += `\n📌 Complemento: ${complemento}`;
     }
 
-    let mensagem = `🛒 *Pedido - Um Dois Feijão com Arroz*\n\n`;
-
-    mensagem += `👤 *Cliente:* ${nome}\n`;
-    mensagem += `📞 *Telefone:* ${telefone}\n\n`;
-
-    mensagem += `📍 *Endereço:*\n${enderecoFormatado}\n\n`;
-
-    mensagem += `📦 *Itens do Pedido:*\n`;
+    let mensagem = `🛒 *Pedido*\n\n`;
+    mensagem += `👤 ${nome}\n📞 ${telefone}\n\n`;
+    mensagem += `📍 ${endereco}\n\n`;
+    mensagem += `📦 Itens:\n`;
 
     let total = 0;
 
     carrinho.forEach(item => {
         const peso = item.peso || 1;
-        const subtotal = item.preco * peso * item.quantidade;
+
+        let subtotal =
+            item.tipoVenda === 'atacado'
+                ? item.preco * item.quantidade
+                : item.preco * peso * item.quantidade;
 
         const descricaoUnidade =
-            item.unidade === 'kg'
-                ? `${peso} kg`
-                : item.unidade;
+            item.tipoVenda === 'atacado'
+                ? `Caixa (${peso}kg)`
+                : (item.unidade === 'kg'
+                    ? `${peso} kg`
+                    : item.unidade);
 
         mensagem += `• ${item.nome} (${descricaoUnidade})\n`;
         mensagem += `  Qtd: ${item.quantidade} | R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
@@ -275,18 +306,16 @@ function enviarPedido() {
         total += subtotal;
     });
 
-    mensagem += `\n💰 *Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
+    mensagem += `\n💰 Total: R$ ${total.toFixed(2).replace('.', ',')}`;
 
     const numeroWhatsApp = "5511998988312";
-
-    const url =
-        `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
 
     window.open(url, '_blank');
 }
 
 // ==========================================
-// INICIALIZAÇÃO
+// INIT
 // ==========================================
 carregarProdutos();
 

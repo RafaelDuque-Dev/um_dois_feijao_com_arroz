@@ -1,26 +1,64 @@
 [
-  { "id": 1, "nome": "Cará", "preco": 8.34, "tipo": "raiz", "unidade": "kg", "imagem": "img/cara.jpg" },
+  { "id": 1, "nome": "Cará", "preco": 8.34, "tipo": "raiz", "unidade": "kg", "imagem": "img/cara.jpg",
+    "atacado": { "precoCaixa": 118.00, "pesoCaixa": 13 } },
+
   { "id": 2, "nome": "Abobrinha", "preco": 10.00, "tipo": "legume", "unidade": "kg", "imagem": "img/abobrinha.jpg" },
-  { "id": 3, "nome": "Chuchu", "preco": 3.99, "tipo": "legume", "unidade": "kg", "imagem": "img/chuchu.jpg" },
-  { "id": 4, "nome": "Tomate", "preco": 11.00, "tipo": "legume", "unidade": "kg", "imagem": "img/tomate.jpg" },
+
+  { "id": 3, "nome": "Chuchu", "preco": 3.99, "tipo": "legume", "unidade": "kg", "imagem": "img/chuchu.jpg",
+    "atacado": { "precoCaixa": 59.00, "pesoCaixa": 16 } },
+
+  { "id": 4, "nome": "Tomate", "preco": 11.00, "tipo": "legume", "unidade": "kg", "imagem": "img/tomate.jpg",
+    "atacado": { "precoCaixa": 106.00, "pesoCaixa": 17 } },
+
   { "id": 6, "nome": "Abóbora Japonesa", "preco": 15.20, "tipo": "legume", "unidade": "kg", "imagem": "img/abobora.jpg" },
-  { "id": 7, "nome": "Milho Verde", "preco": 4.10, "tipo": "legume", "unidade": "kg", "imagem": "img/milho.jpg" },
-  { "id": 8, "nome": "Batata", "preco": 10.00, "tipo": "raiz", "unidade": "kg", "imagem": "img/batata.jpg" },
-  { "id": 9, "nome": "Pimentão Verde", "preco": 11.99, "tipo": "legume", "unidade": "kg", "imagem": "img/pimentao_verde.jpg" },
-  { "id": 10, "nome": "Pimentão Vermelho", "preco": 20.00, "tipo": "legume", "unidade": "kg", "imagem": "img/pimentao_vermelho.jpg" },
-  { "id": 11, "nome": "Pimentão Amarelo", "preco": 16.15, "tipo": "legume", "unidade": "kg", "imagem": "img/pimentao_amarelo.jpg" },
+
+  { "id": 7, "nome": "Milho Verde", "preco": 4.10, "tipo": "legume", "unidade": "kg", "imagem": "img/milho.jpg",
+    "atacado": { "precoCaixa": 78.00, "pesoCaixa": 10 } },
+
+  { "id": 8, "nome": "Batata", "preco": 10.00, "tipo": "raiz", "unidade": "kg", "imagem": "img/batata.jpg",
+    "atacado": { "precoCaixa": 138.00, "pesoCaixa": 20 } },
+
+  { "id": 9, "nome": "Pimentão Verde", "preco": 11.99, "tipo": "legume", "unidade": "kg", "imagem": "img/pimentao_verde.jpg",
+    "atacado": { "precoCaixa": 86.00, "pesoCaixa": 9 } },
+
+  { "id": 10, "nome": "Pimentão Vermelho", "preco": 20.00, "tipo": "legume", "unidade": "kg", "imagem": "img/pimentao_vermelho.jpg",
+    "atacado": { "precoCaixa": 143.00, "pesoCaixa": 9 } },
+
+  { "id": 11, "nome": "Pimentão Amarelo", "preco": 16.15, "tipo": "legume", "unidade": "kg", "imagem": "img/pimentao_amarelo.jpg",
+    "atacado": { "precoCaixa": 143.00, "pesoCaixa": 9 } },
+
   { "id": 12, "nome": "Alho (100g)", "preco": 3.00, "tipo": "tempero", "unidade": "grama", "imagem": "img/alho.jpg" },
+
   { "id": 13, "nome": "Cebola", "preco": 5.00, "tipo": "tempero", "unidade": "kg", "imagem": "img/cebola.jpg" },
-  { "id": 13, "nome": "Cebola Roxa", "preco": 5.00, "tipo": "tempero", "unidade": "kg", "imagem": "img/cebola_roxa.jpg" },
-  { "id": 14, "nome": "Cenoura", "preco": 8.00, "tipo": "raiz", "unidade": "kg", "imagem": "img/cenoura.jpg" },
+
+  { "id": 45, "nome": "Cebola Roxa", "preco": 5.00, "tipo": "tempero", "unidade": "kg", "imagem": "img/cebola_roxa.jpg" },
+
+  { "id": 14, "nome": "Cenoura", "preco": 8.00, "tipo": "raiz", "unidade": "kg", "imagem": "img/cenoura.jpg",
+    "atacado": { "precoCaixa": 144.00, "pesoCaixa": 18 } },
+
   { "id": 15, "nome": "Ovos Extra", "preco": 1.50, "tipo": "ovo", "unidade": "unidade", "imagem": "img/ovo_extra.jpg" },
-  { "id": 16, "nome": "Inhame", "preco": 22.00, "tipo": "raiz", "unidade": "kg", "imagem": "img/inhame.jpg" },
-  { "id": 17, "nome": "Mandioca", "preco": 10.18, "tipo": "raiz", "unidade": "kg", "imagem": "img/mandioca.jpg" },
-  { "id": 18, "nome": "Batata Doce Rosa", "preco": 7.88, "tipo": "raiz", "unidade": "kg", "imagem": "img/batata_doce.jpg" },
-  { "id": 19, "nome": "Beterraba", "preco": 7.00, "tipo": "raiz", "unidade": "kg", "imagem": "img/beterraba.jpg" },
-  { "id": 20, "nome": "Gengibre", "preco": 15.66, "tipo": "tempero", "unidade": "kg", "imagem": "img/gengibre.jpg" },
-  { "id": 21, "nome": "Pepino Japonês", "preco": 6.38, "tipo": "legume", "unidade": "kg", "imagem": "img/pepino_japones.jpg" },
-  { "id": 22, "nome": "Pepino Comum", "preco": 7.99, "tipo": "legume", "unidade": "kg", "imagem": "img/pepino_comum.jpg" },
+
+  { "id": 16, "nome": "Inhame", "preco": 22.00, "tipo": "raiz", "unidade": "kg", "imagem": "img/inhame.jpg",
+    "atacado": { "precoCaixa": 118.00, "pesoCaixa": 15 } },
+
+  { "id": 17, "nome": "Mandioca", "preco": 10.18, "tipo": "raiz", "unidade": "kg", "imagem": "img/mandioca.jpg",
+    "atacado": { "precoCaixa": 52.00, "pesoCaixa": 20 } },
+
+  { "id": 18, "nome": "Batata Doce Rosa", "preco": 7.88, "tipo": "raiz", "unidade": "kg", "imagem": "img/batata_doce.jpg",
+    "atacado": { "precoCaixa": 78.00, "pesoCaixa": 16 } },
+
+  { "id": 19, "nome": "Beterraba", "preco": 7.00, "tipo": "raiz", "unidade": "kg", "imagem": "img/beterraba.jpg",
+    "atacado": { "precoCaixa": 112.00, "pesoCaixa": 18 } },
+
+  { "id": 20, "nome": "Gengibre", "preco": 15.66, "tipo": "tempero", "unidade": "kg", "imagem": "img/gengibre.jpg",
+    "atacado": { "precoCaixa": 117.00, "pesoCaixa": 12 } },
+
+  { "id": 21, "nome": "Pepino Japonês", "preco": 6.38, "tipo": "legume", "unidade": "kg", "imagem": "img/pepino_japones.jpg",
+    "atacado": { "precoCaixa": 144.00, "pesoCaixa": 16 } },
+
+  { "id": 22, "nome": "Pepino Comum", "preco": 7.99, "tipo": "legume", "unidade": "kg", "imagem": "img/pepino_comum.jpg",
+    "atacado": { "precoCaixa": 130.00, "pesoCaixa": 16 } },
+
   { "id": 23, "nome": "Acelga", "preco": 10.00, "tipo": "verdura", "unidade": "unidade", "imagem": "img/acelga.jpg" },
   { "id": 24, "nome": "Alface", "preco": 6.00, "tipo": "verdura", "unidade": "unidade", "imagem": "img/alface_crespa.jpg" },
   { "id": 25, "nome": "Couve Flor", "preco": 12.00, "tipo": "verdura", "unidade": "unidade", "imagem": "img/couve_flor-branca.jpg" },
@@ -31,18 +69,41 @@
   { "id": 30, "nome": "Salsão", "preco": 12.00, "tipo": "verdura", "unidade": "unidade", "imagem": "img/salsao.jpg" },
   { "id": 31, "nome": "Repolho", "preco": 6.00, "tipo": "verdura", "unidade": "unidade", "imagem": "img/repolho.jpg" },
 
-  { "id": 32, "nome": "Laranja", "preco": 6.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/laranja.jpg" },
+  { "id": 32, "nome": "Laranja", "preco": 6.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/laranja.jpg",
+    "atacado": { "precoCaixa": 112.00, "pesoCaixa": 20 } },
+
   { "id": 33, "nome": "Laranja Pera", "preco": 5.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/laranja_pera.jpg" },
-  { "id": 34, "nome": "Maçã Gala", "preco": 11.99, "tipo": "fruta", "unidade": "kg", "imagem": "img/maca_gala.jpg" },
+
+  { "id": 34, "nome": "Maçã Gala", "preco": 11.99, "tipo": "fruta", "unidade": "kg", "imagem": "img/maca_gala.jpg",
+    "atacado": { "precoCaixa": 130.00, "pesoCaixa": 18 } },
+
   { "id": 35, "nome": "Uva Verde", "preco": 13.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/uva_thompson.jpg" },
   { "id": 36, "nome": "Ameixa Nacional", "preco": 13.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/ameixa.jpg" },
-  { "id": 37, "nome": "Mexerica Ponkan", "preco": 9.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/mexerica.jpg" },
-  { "id": 38, "nome": "Pera Williams", "preco": 13.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/pera.jpg" },
-  { "id": 39, "nome": "Goiaba", "preco": 8.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/goiaba.jpg" },
-  { "id": 40, "nome": "Abacate", "preco": 8.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/abacate_manteiga.jpg" },
-  { "id": 41, "nome": "Limão Cecília", "preco": 20.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/limao.jpg" },
-  { "id": 42, "nome": "Manga Palmer", "preco": 6.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/manga.jpg" },
-  { "id": 43, "nome": "Mamão Papaia", "preco": 13.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/mamao_papaya.jpg" },
-  { "id": 44, "nome": "Banana Prata", "preco": 10.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/banana_prata.jpg" },
-  { "id": 46, "nome": "Maracujá", "preco": 10.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/maracuja_azedo.jpg" }
+
+  { "id": 37, "nome": "Mexerica Ponkan", "preco": 9.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/mexerica.jpg",
+    "atacado": { "precoCaixa": 118.00, "pesoCaixa": 16 } },
+
+  { "id": 38, "nome": "Pera Williams", "preco": 13.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/pera.jpg",
+    "atacado": { "precoCaixa": 208.00, "pesoCaixa": 18 } },
+
+  { "id": 39, "nome": "Goiaba", "preco": 8.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/goiaba.jpg",
+    "atacado": { "precoCaixa": 78.00, "pesoCaixa": 10 } },
+
+  { "id": 40, "nome": "Abacate", "preco": 8.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/abacate_manteiga.jpg",
+    "atacado": { "precoCaixa": 86.00, "pesoCaixa": 22 } },
+
+  { "id": 41, "nome": "Limão Cecília", "preco": 20.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/limao.jpg",
+    "atacado": { "precoCaixa": 112.00, "pesoCaixa": 20 } },
+
+  { "id": 42, "nome": "Manga Palmer", "preco": 6.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/manga.jpg",
+    "atacado": { "precoCaixa": 118.00, "pesoCaixa": 18 } },
+
+  { "id": 43, "nome": "Mamão Papaia", "preco": 13.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/mamao_papaya.jpg",
+    "atacado": { "precoCaixa": 86.00, "pesoCaixa": 15 } },
+
+  { "id": 44, "nome": "Banana Prata", "preco": 10.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/banana_prata.jpg",
+    "atacado": { "precoCaixa": 78.00, "pesoCaixa": 20 } },
+
+  { "id": 46, "nome": "Maracujá", "preco": 10.00, "tipo": "fruta", "unidade": "kg", "imagem": "img/maracuja_azedo.jpg",
+    "atacado": { "precoCaixa": 112.00, "pesoCaixa": 10 } }
 ]
